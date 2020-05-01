@@ -14,7 +14,10 @@ export default {
   name: 'app',
   components: {
     UserDash
-  }
+  },
+  mounted(){
+       this.$store.dispatch('getUsers');
+    }
 }
 </script>
 

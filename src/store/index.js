@@ -11,13 +11,21 @@ export default new Vuex.Store({
     mutations: {
         SET_USERS(state, users){
             state.users = users;
+        },
+        ADD_USER (state, user){
+            let newUser = state.users.concat(user);
+            state.users = newUser;
         }
     },
     actions: {
-        getUsers({commit}) {
-            let response =  Api().get('/users').then(res => {return res.data}).then(res => console.log(res));
-            let data = response.data;
-            commit('SET_USERS',data);
+       async getUsers({commit}) {
+            let response = await Api().get('/users');
+            commit('SET_USERS',response.data);
+        },
+        async addUser( {commit}, user) {
+            let response = await Api().post('/users', user).then(console.log(user));
+            let newUser = response.data.data.attributes;
+            commit('ADD_USER',newUser)
         }
     },
     modules: {}

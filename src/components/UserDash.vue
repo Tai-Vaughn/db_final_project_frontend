@@ -12,7 +12,7 @@
 
 <script>
 import UserCard from './UserCard'
-import Api from '../service/api'
+
 
 
 
@@ -23,23 +23,15 @@ export default {
     },
 
     mounted(){
-        // Api().get('/users').then(res => this.users=res.data)
     },
 
     created: function(){
-        this.getUsers();
     },
 
-    data() {
-        return {
-            users: []
-        }
+    computed: {
+        users() {return this.$store.state.users}
     },
     methods : {
-        async getUsers(){
-            let response = await Api().get('/users').then(res => console.log(res));
-            this.users = response.data;
-        }
     }
 
 }
