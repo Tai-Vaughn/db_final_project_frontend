@@ -1,14 +1,14 @@
 <template>
-    <div class="card mb-3">
-        <h4 class="card-header text-secondary">
+    <v-card class="mb-3 mt-2">
+        <v-card-title class="card-header text-secondary">
             @{{ user.username }}
-        </h4>
-        <div class="card-body d-flex-column">
+        </v-card-title>
+        <v-card-text class="card-body d-flex-column">
             <h5>Name: {{ user.first_name }} {{user.last_name}}</h5>
             <h5>Email : {{user.email}}</h5>
-            <button class="btn btn-primary">View</button>
-        </div>    
-    </div>    
+            <v-btn class="btn btn-primary">View</v-btn>
+        </v-card-text>    
+    </v-card>    
 </template>
 
 <script>
