@@ -1,12 +1,9 @@
 <template>
     <div >
-        <ul v-bind:key="user.id" v-for="user in users">
-            <li >
-                <UserCard v-bind:user="user">
-
-                </UserCard>
-            </li>
-        </ul>
+        <div v-bind:key="user.id" v-for="user in users">
+            <UserCard v-bind:user="user">
+            </UserCard>
+        </div>
     </div>
 </template>
 

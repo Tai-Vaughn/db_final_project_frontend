@@ -1,51 +1,46 @@
 <template>
-  <div id="app">
-    <UserDash/>
-    <router-view />
-  </div>
+  <v-app>
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Login</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-content>
+      <UserDash></UserDash>
+      <router-view></router-view>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-
 import UserDash from './components/UserDash'
 
+export default {
+  name: 'App',
 
-export default {  
-  name: 'app',
   components: {
     UserDash
   },
-  mounted(){
+    mounted(){
        this.$store.dispatch('getUsers');
-    }
-}
+    },
+
+  data: () => ({
+    //
+  }),
+};
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-</style>
