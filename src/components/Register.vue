@@ -26,8 +26,12 @@
             </div>
 
             <div class="mb-3">
-            <router-link type="submit" class="btn btn-success mr-4" >Create</router-link>
-            <router-link to='/login' class="btn btn-info">Login</router-link>
+            <router-link to='/register' tag="button" class="btn ">
+                <v-btn class="btn btn-success">Register</v-btn>
+            </router-link>
+            <router-link to='/login' tag="button" class="btn ">
+                <v-btn class="btn btn-info">login</v-btn>
+            </router-link>
         </div>
         </form>
         

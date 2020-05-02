@@ -16,7 +16,9 @@
         </form>
         <div class="mb-3">
             <v-btn class="btn btn-success mr-3">Login</v-btn>
-            <router-link to='/register' class="btn btn-info">Register</router-link>
+            <router-link to='/register' tag="button" class="btn ">
+                <v-btn class="btn btn-info">Register</v-btn>
+            </router-link>
         </div>
     </div>
 </template>
