@@ -9,7 +9,7 @@
 
 <script>
 import UserCard from './UserCard'
-
+import {mapState} from 'vuex'
 
 
 
@@ -20,13 +20,14 @@ export default {
     },
 
     mounted(){
+        
     },
 
     created: function(){
     },
 
     computed: {
-        users() {return this.$store.state.users}
+        ...mapState(['users'])
     },
     methods : {
     }

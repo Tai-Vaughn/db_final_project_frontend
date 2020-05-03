@@ -6,7 +6,8 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        users: []
+        users: [],
+        currentUser: {Fname: 'yoyo'}
     },
     mutations: {
         SET_USERS(state, users){
@@ -15,6 +16,9 @@ export default new Vuex.Store({
         ADD_USER (state, user){
             let newUser = state.users.concat(user);
             state.users = newUser;
+        },
+        LOGOUT_USER(state){
+          state.currentUser = {}  
         }
     },
     actions: {
@@ -26,6 +30,9 @@ export default new Vuex.Store({
             let response = await Api().post('/users', user).then(console.log(user));
             let newUser = response.data.data.attributes;
             commit('ADD_USER',newUser)
+        },
+        logoutUser({commit}) {
+            commit('LOGOUT_USER')
         }
     },
     modules: {}

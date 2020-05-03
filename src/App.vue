@@ -8,15 +8,23 @@
 
 
       <v-spacer></v-spacer>
-
-      <v-btn
+      <div v-if="currentUser.Fname">
+        {{currentUser.Fname}}
+        <v-btn text class="mr-2" @click="logoutUser">
+          Logout
+        </v-btn>
+      </div>
+      <div v-else>
+        <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
         text
-      >
-        <span class="mr-2">Login</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+        >
+          <span class="mr-2">Login</span>
+          <v-icon>mdi-open-in-new</v-icon>
+        </v-btn> 
+      </div>
+      
     </v-app-bar>
 
     <v-content>
@@ -28,6 +36,7 @@
 
 <script>
 import UserDash from './components/UserDash'
+import {mapState} from 'vuex'
 
 export default {
   name: 'App',
@@ -35,9 +44,18 @@ export default {
   components: {
     UserDash
   },
-    mounted(){
-       this.$store.dispatch('getUsers');
-    },
+  mounted(){
+      this.$store.dispatch('getUsers');   
+  },
+  computed: {
+    ...mapState(['currentUser'])
+  },
+
+  methods : {
+    logoutUser() {
+      this.$store.dispatch("logoutUser")
+    }
+  },
 
   data: () => ({
     //

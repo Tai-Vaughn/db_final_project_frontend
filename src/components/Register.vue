@@ -5,29 +5,30 @@
             <h3 class="card-title">Register</h3>
             <div class="mb-3">
                 <label for="FirstName" class="pl-2" >First Name</label>
-                <input type="text"  id="FirstName" v-model="user.first_name" required>
+                <input type="text"  id="FirstName" v-model="user.Fname" required>
 
                 <label for="LastName">Last Name</label>
-                <input type="text" id="LastName"  v-model="user.last_name" required> 
+                <input type="text" id="LastName"  v-model="user.Lname" required> 
             </div>
             <div class="mb-3">
                 <label for="Username">Username</label>
-                <input type="text" id="Username" v-model="user.username" required>
+                <input type="text" id="Username" v-model="user.Uname" required>
                 
                 <label for="Password">Password</label>
-                <input type="password" id="password"  v-model="user.p_word" required>
+                <input type="password" id="password"  v-model="user.password" required>
             </div>
             <div>
                 <label for="Email">Email</label>
                 <input type="email" id="Email" v-model="user.email" required>
 
                 <label for="DOB"> Date Of Birth</label>
-                <input type="date" id="DOB" required>
+                <input type="date" id="DOB" v-model="user.DOB" required>
+                <v-file-input v-model="user.Profile_pic"></v-file-input>
             </div>
 
             <div class="mb-3">
             <router-link to='/register' tag="button" class="btn ">
-                <v-btn class="btn btn-success">Register</v-btn>
+                <v-btn @click="addUser" class="btn btn-success">Register</v-btn>
             </router-link>
             <router-link to='/login' tag="button" class="btn ">
                 <v-btn class="btn btn-info">login</v-btn>
@@ -44,15 +45,16 @@ export default {
     data() {
         return {
             user: {
-                user_ID: 0,
+                UID: 0,
             }
         }
         
     },
     methods: {
         addUser() {
-            this.$store.dispatch('addUser', this.user);
-            this.$router.push({path: '/login'})
+            console.log(this.user)
+            // this.$store.dispatch('addUser', this.user);
+            // this.$router.push({path: '/login'})
         }
     }
 }
