@@ -1,28 +1,38 @@
 <template>
-    <div class="card container  mt-4">
+    <v-container class="card  mt-4">
         
-        <v-form class="pb-3 d-flex flex-column ">
+        <v-form v-model="valid" class="pb-3 d-flex flex-column ">
             
             <h3 class="card-title">Login</h3>
-            <v-text-field v-model="loginInfo.Uname" label="Username"></v-text-field>
-            <v-text-field type="password" v-model="loginInfo.password" label="Password"></v-text-field>
+            <v-text-field v-model="loginInfo.Uname" label="Username" :rules="[required('Username'),maxlength('Username',30)]"></v-text-field>
+            <v-text-field 
+                :type="showPassword ? 'text' : 'password'" 
+                v-model="loginInfo.password" 
+                label="Password"
+                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                @click:append="change"
+                :rules="[required('Password'),maxlength('Password',30)]"
+            ></v-text-field>
             
         
             <div class="mb-3">
-                <v-btn class="btn btn-success mr-3" @click="loginUser">Login</v-btn>
-                <v-btn class="btn btn-info">Register</v-btn>
-                
+                <v-btn class="btn btn-success mr-3" :disabled="!valid" @click="loginUser">Login</v-btn>
+                <router-link to='/register'><v-btn class="btn btn-info">Register</v-btn></router-link>
+
         </div>
         </v-form>
-    </div>
+    </v-container>
 </template>
 
 <script>
-
+import validations from '@/utils/validations'
 export default {
     name: "Login",
     data(){
         return{
+            ...validations,
+            valid:false,
+            showPassword:true,
             loginInfo : {
                 Uname : '',
                 password: ''
@@ -35,6 +45,9 @@ export default {
             if(user.error){
                 alert(user.error)
             }
+        },
+        change(){
+            this.showPassword = !this.showPassword;
         }
     }
 }
