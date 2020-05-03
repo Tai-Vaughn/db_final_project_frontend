@@ -1,31 +1,42 @@
 <template>
-    <div class="card container">
+    <div class="card container  mt-4">
         
-        <form class="pb-3 d-flex flex-column ">
+        <v-form class="pb-3 d-flex flex-column ">
             
             <h3 class="card-title">Login</h3>
-            <div>
-                <label for="username" class="pl-2" >Username</label>
-                <input type="text"  id="username">
-            </div>
-            <div>
-                <label for="password">Password</label>
-                <input type="password" id="password">
-            </div>
+            <v-text-field v-model="loginInfo.Uname" label="Username"></v-text-field>
+            <v-text-field type="password" v-model="loginInfo.password" label="Password"></v-text-field>
             
-        </form>
-        <div class="mb-3">
-            <v-btn class="btn btn-success mr-3">Login</v-btn>
-            <router-link to='/register' tag="button" class="btn ">
+        
+            <div class="mb-3">
+                <v-btn class="btn btn-success mr-3" @click="loginUser">Login</v-btn>
                 <v-btn class="btn btn-info">Register</v-btn>
-            </router-link>
+                
         </div>
+        </v-form>
     </div>
 </template>
 
 <script>
+
 export default {
-    name: "Login"
+    name: "Login",
+    data(){
+        return{
+            loginInfo : {
+                Uname : '',
+                password: ''
+            }
+        }
+    },
+    methods: {
+        async loginUser(){
+            let user = await this.$store.dispatch('loginUser',this.loginInfo)
+            if(user.error){
+                alert(user.error)
+            }
+        }
+    }
 }
 </script>
 

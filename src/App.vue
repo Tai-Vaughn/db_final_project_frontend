@@ -9,15 +9,13 @@
 
       <v-spacer></v-spacer>
       <div v-if="currentUser.Fname">
-        {{currentUser.Fname}}
+        {{currentUser.Uname}}
         <v-btn text class="mr-2" @click="logoutUser">
           Logout
         </v-btn>
       </div>
       <div v-else>
         <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
         text
         >
           <span class="mr-2">Login</span>
@@ -28,21 +26,18 @@
     </v-app-bar>
 
     <v-content>
-      <UserDash></UserDash>
       <router-view></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import UserDash from './components/UserDash'
 import {mapState} from 'vuex'
 
 export default {
   name: 'App',
 
   components: {
-    UserDash
   },
   mounted(){
       this.$store.dispatch('getUsers');   

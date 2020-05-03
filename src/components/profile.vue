@@ -14,7 +14,7 @@
                     <v-flex class="mb-4">
 
                         <v-avatar size="96" class="mr-4">
-                            <img :src="'/avatars/avatar_' +  {{ user.profile_pic }} + '.png'" alt="Avatar">
+                            <img alt="Avatar">
                         </v-avatar>
 
                         <v-btn>Change Avatar</v-btn>
@@ -30,6 +30,7 @@
                 </v-card-text>
 
                 <v-card-actions>
+                    <v-btn>
                     <v-icon right fab color="cyan">mdi-pencil</v-icon>
                         Make Changes 
                     </v-btn>
@@ -41,9 +42,7 @@
 </template>
 
 <script>
-    export default {
-        pageTitle: 'My Profile',
-        name:"Profile"
-        props:['user']
-        }
+export default {
+    name: 'Profile'
+}
 </script>

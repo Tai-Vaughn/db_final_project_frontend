@@ -1,7 +1,7 @@
 <template>
     <div >
         <div v-bind:key="user.id" v-for="user in users">
-            <UserCard v-bind:user="user">
+            <UserCard v-bind:user="user"> 
             </UserCard>
         </div>
     </div>
