@@ -1,52 +1,38 @@
 <template>
-    <div class="card container">
-        <form class="pb-3 d-flex flex-column" @submit="addUser">
+    <v-container class="card mt-4">
+        <v-form v-model="valid" class="pb-3 d-flex flex-column" @submit="addUser">
             
             <h3 class="card-title">Register</h3>
-            <div class="mb-3">
-                <label for="FirstName" class="pl-2" >First Name</label>
-                <input type="text"  id="FirstName" v-model="user.Fname" required>
-
-                <label for="LastName">Last Name</label>
-                <input type="text" id="LastName"  v-model="user.Lname" required> 
-            </div>
-            <div class="mb-3">
-                <label for="Username">Username</label>
-                <input type="text" id="Username" v-model="user.Uname" required>
-                
-                <label for="Password">Password</label>
-                <input type="password" id="password"  v-model="user.password" required>
-            </div>
-            <div>
-                <label for="Email">Email</label>
-                <input type="email" id="Email" v-model="user.email" required>
-
-                <label for="DOB"> Date Of Birth</label>
-                <input type="date" id="DOB" v-model="user.DOB" required>
-                <v-file-input v-model="user.Profile_pic"></v-file-input>
-            </div>
-
-            <div class="mb-3">
-            <router-link to='/register' tag="button" class="btn ">
-                <v-btn @click="addUser" class="btn btn-success">Register</v-btn>
-            </router-link>
-            <router-link to='/login' tag="button" class="btn ">
-                <v-btn class="btn btn-info">login</v-btn>
-            </router-link>
-        </div>
-        </form>
         
-    </div>  
+            <v-text-field  v-model="user.Fname" label="First Name" :rules="[required('First Name'),maxlength('First Name',20)]"></v-text-field>
+            <v-text-field  v-model="user.Lname" label="Last Name"  :rules="[required('Last Name'),maxlength('Last Name',20)]"></v-text-field>
+            
+            <v-text-field  v-model="user.Uname" label="Username" :rules="[required('Username'),maxlength('Username',30)]"></v-text-field>
+            <v-text-field  v-model="user.password" label="Password" :rules="[required('Password'),maxlength('Password',30)]"></v-text-field>
+
+            <v-text-field type="email" v-model="user.email" label="Email" :rules="[required('Email'),maxlength('Email',30), emailFormat()]"></v-text-field>
+            <v-text-field type="date" v-model="user.DOB" label="Date Of Birth" ></v-text-field>
+            <v-file-input v-model="user.Profile_pic"></v-file-input>
+
+            <div>
+                <v-btn @click="addUser" :disabled="!valid" class="btn btn-success mr-4">Register</v-btn>
+                <router-link  to="/login"><v-btn class="btn btn-info">login</v-btn></router-link>
+            </div>
+
+        </v-form>
+        
+    </v-container>  
 </template>
 
 <script>
+import validations from '@/utils/validations'
 export default {
     name: 'Register',
     data() {
         return {
-            user: {
-                UID: 0,
-            }
+            ...validations,
+            valid:false,
+            user: {UID: 0,}
         }
         
     },
