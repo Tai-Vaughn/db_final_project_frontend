@@ -15,7 +15,6 @@ import {mapState} from 'vuex'
 
 export default {
     name: 'UserDash',
-    props: ['users'],
     components: {
         UserCard
     },
@@ -30,6 +29,7 @@ export default {
     computed: {
         ...mapState(['users'])
     },
+    
     methods : {
     }
 

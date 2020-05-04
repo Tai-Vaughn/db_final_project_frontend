@@ -41,14 +41,14 @@
 </template>
 
 <script>
-import UserCard from './UserCard'
+
 import {mapState} from 'vuex'
 
 export default {
     name : 'FriendList',
-    components: [
-       UserCard 
-    ],
+    components: {
+        
+    },
     mounted() {
         this.$store.dispatch('getFriends')
     },

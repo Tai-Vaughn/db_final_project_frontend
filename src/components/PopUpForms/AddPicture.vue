@@ -15,7 +15,7 @@
                 
             </v-card-title>
             <v-card-actions>
-                <v-btn class="error"> Cancel </v-btn>
+                <v-btn class="error" @click="dialog = false"> Cancel </v-btn>
                 <v-btn class="success"> Add </v-btn>
             </v-card-actions>
         </v-card>

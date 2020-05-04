@@ -9,6 +9,7 @@ export default new Vuex.Store({
         users: [],
         friends:[],
         gallary: [],
+        isAuthenticated: false,
         currentUser: {},
         sideBarView: {view: 'Users'}, 
         friendTypes: ['Relatives', 'School', 'Work']
@@ -33,10 +34,12 @@ export default new Vuex.Store({
         LOGOUT_USER(state){
           state.currentUser = {}  ;
           window.localStorage.currentUser = JSON.stringify({})
+          window.localStorage.isAuthenticated = false;
         },
         SET_CURRENT_USER(state, user){
             state.currentUser = user;
-            window.localStorage.currentUser = JSON.stringify(user)
+            window.localStorage.currentUser = JSON.stringify(user);
+            window.localStorage.isAuthenticated = true;
         },
         ADD_FRIEND (state, user){
             console.log( state , user)

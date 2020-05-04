@@ -12,6 +12,7 @@ let emailFormat = () => {
 
 }
 
+
 export default {
     required,
     maxlength,
