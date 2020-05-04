@@ -1,6 +1,6 @@
 import Login from "../components/Login";
 import Register from "../components/Register"
-import Profile from "../components/profile"
+import Profile from "../components/Profile/Profile"
 
 
 const routes = [

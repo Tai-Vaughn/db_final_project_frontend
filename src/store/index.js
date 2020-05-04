@@ -7,11 +7,17 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         users: [],
-        currentUser: {Fname: 'yoyo'}
+        friend:[],
+        currentUser: {},
+        sideBarView: {view: 'Users'}, 
+        friendTypes: ['Relatives', 'School', 'Work']
     },
     mutations: {
         SET_USERS(state, users){
             state.users = users;
+        },
+        SET_SIDE_BAR_VIEW(state,view){
+            state.sideBarView.view = view;
         },
         ADD_USER (state, user){
             let newUser = state.users.concat(user);
@@ -24,7 +30,12 @@ export default new Vuex.Store({
         SET_CURRENT_USER(state, user){
             state.currentUser = user;
             window.localStorage.currentUser = JSON.stringify(user)
+        },
+        ADD_FRIEND (state, user){
+            console.log( state , user)
+    
         }
+
     },
     actions: {
        async getUsers({commit}) {
@@ -51,6 +62,22 @@ export default new Vuex.Store({
                 return {error: "Incorect username or password"}
             }
             
+        },
+        setsideBarView({commit},view){
+            try{
+                commit('SET_SIDE_BAR_VIEW',view)
+            }catch(e){
+                alert('Something Went Wrong')
+            }
+        },
+        async addFriend({commit},user){
+            try{
+                console.log('ok',user)
+                await Api().post('/users/addfriend',user);
+                commit('ADD_FRIEND',)
+            }catch(e){
+                return {error: "Something went wrong"}
+            }
         }
     },
     modules: {}

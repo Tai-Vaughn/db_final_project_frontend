@@ -34,8 +34,8 @@ export default {
             valid:false,
             showPassword:true,
             loginInfo : {
-                Uname : '',
-                password: ''
+                Uname : 'Isamutai',
+                password: 'pass123'
             }
         }
     },
@@ -44,6 +44,8 @@ export default {
             let user = await this.$store.dispatch('loginUser',this.loginInfo)
             if(user.error){
                 alert(user.error)
+            }else{
+                console.log('')
             }
         },
         change(){

@@ -39,8 +39,8 @@ export default {
     methods: {
         addUser() {
             console.log(this.user)
-            // this.$store.dispatch('addUser', this.user);
-            // this.$router.push({path: '/login'})
+            this.$store.dispatch('addUser', this.user);
+            this.$router.push({path: '/login'})
         }
     }
 }

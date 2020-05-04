@@ -5,7 +5,10 @@
       color="primary"
       dark
     >
-
+      <v-btn to="/profile" class="mr-3">Profile</v-btn>
+      <v-btn to="friends" class="mr-3">Freinds</v-btn>
+      <v-btn to="Groups" class="mr-3">Groups</v-btn>
+      <v-btn to= "photo" class="mr-3">Photo</v-btn>
 
       <v-spacer></v-spacer>
       <div v-if="currentUser.Fname">
@@ -34,10 +37,12 @@
 <script>
 import {mapState} from 'vuex'
 
+
 export default {
   name: 'App',
 
   components: {
+    
   },
   mounted(){
       this.$store.dispatch('getUsers');   
