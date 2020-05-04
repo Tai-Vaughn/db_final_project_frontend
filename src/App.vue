@@ -6,9 +6,9 @@
       dark
     >
       <v-btn to="/profile" class="mr-3">Profile</v-btn>
-      <v-btn to="friends" class="mr-3">Freinds</v-btn>
-      <v-btn to="Groups" class="mr-3">Groups</v-btn>
-      <v-btn to= "photo" class="mr-3">Photo</v-btn>
+      <v-btn to="/friends" @click="loadFriends(currentUser.UID)" class="mr-3">Freinds</v-btn>
+      <v-btn to="/groups" class="mr-3">Groups</v-btn>
+      <v-btn to="/gallery" @click="loadPic(currentUser.UID)" class="mr-3">Photo</v-btn>
 
       <v-spacer></v-spacer>
       <div v-if="currentUser.Fname">
@@ -54,7 +54,13 @@ export default {
   methods : {
     logoutUser() {
       this.$store.dispatch("logoutUser")
-    }
+    },
+    loadFriends(UID){
+      this.$store.dispatch('getFriends',UID)
+    },
+    loadPic(UID){
+      this.$store.dispatch('getPics',UID)
+    },
   },
 
   data: () => ({

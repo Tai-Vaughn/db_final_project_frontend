@@ -7,7 +7,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         users: [],
-        friend:[],
+        friends:[],
+        gallary: [],
         currentUser: {},
         sideBarView: {view: 'Users'}, 
         friendTypes: ['Relatives', 'School', 'Work']
@@ -15,6 +16,12 @@ export default new Vuex.Store({
     mutations: {
         SET_USERS(state, users){
             state.users = users;
+        },
+        SET_FRIENDS(state, friends){
+            state.friends = friends;
+        },
+        SET_GALLARY(state, gallary){
+            state.gallary = gallary;
         },
         SET_SIDE_BAR_VIEW(state,view){
             state.sideBarView.view = view;
@@ -50,6 +57,17 @@ export default new Vuex.Store({
             let newUser = response.data.data.attributes;
             commit('ADD_USER',newUser)
         },
+
+        async getFriends({commit},UID){
+            let response = await Api().get('/users/'+UID+'/friends')
+            commit('SET_FRIENDS',response.data)
+        },
+
+        async getPics({commit},UID){
+            let response = await Api().get('/users/'+UID+'/pics')
+            commit('SET_GALLARY',response.data)
+        },
+
         logoutUser({commit}) {
             commit('LOGOUT_USER')
         },
