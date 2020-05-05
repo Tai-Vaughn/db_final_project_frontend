@@ -50,7 +50,6 @@ export default {
         
     },
     mounted() {
-        this.$store.dispatch('getFriends')
     },
   computed: {
     ...mapState(['friends'])

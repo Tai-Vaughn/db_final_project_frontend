@@ -1,7 +1,7 @@
 <template>
     <nav>
       <v-app-bar flat app>
-        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer" v-if="currentUser.Fname"></v-app-bar-nav-icon>
         <v-toolbar-title class="text-uppercase mr-3">
           <h2>DB Final</h2>
         </v-toolbar-title>
@@ -11,14 +11,6 @@
         <v-btn text class="mr-2" @click="logoutUser">
           Logout
         </v-btn>
-      </div>
-      <div v-else>
-        <v-btn
-        text
-        >
-          <span class="mr-2">Login</span>
-          <v-icon>mdi-open-in-new</v-icon>
-        </v-btn> 
       </div>
       </v-app-bar>
 
@@ -67,32 +59,32 @@ export default {
         }
     },
       computed: {
-    ...mapState(['currentUser'])
+    ...mapState(['currentUser']),
+    ...mapState(['isAuthenticated'])
     },
     methods : {
     logoutUser() {
       this.$store.dispatch("logoutUser")
+      this.$router.push('/login')
     },
-    loadFriends(){
-      this.$store.dispatch('getFriends',this.currentUser.UID)
+    async loadFriends(){
+      await this.$store.dispatch('getFriends',this.currentUser.UID)
     },
-    loadPic(){
-      this.$store.dispatch('getPics',this.currentUser.UID)
-    },
+    async loadPic(){
+      await this.$store.dispatch('getPics',this.currentUser.UID)
+    }
     },
     mounted(){
     },
     watch: {
     '$route' : function (to){
-      switch(to.name){
-            case "Friend":
-                this.loadFriends();
-
-                break;
+      switch(to.name){    
             case "Galllery":
                 this.loadPic()
                 break;
-
+            case "Friend":
+                this.loadFriends();
+                break;
                 }
             }
         },

@@ -42,11 +42,14 @@ export default {
     methods: {
         async loginUser(){
             let user = await this.$store.dispatch('loginUser',this.loginInfo)
-            if(user.error){
-                alert(user.error)
+            if( (typeof user) === 'undefined') {
+                this.$router.push('/profile')
             }else{
-                console.log('')
+                alert('Invalid username or password')
             }
+        },
+        containsKey(obj, key ) {
+            return Object.keys(obj).includes(key);
         },
         change(){
             this.showPassword = !this.showPassword;
