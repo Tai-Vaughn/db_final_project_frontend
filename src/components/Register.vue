@@ -12,7 +12,7 @@
 
             <v-text-field type="email" v-model="user.email" label="Email" :rules="[required('Email'),maxlength('Email',30), emailFormat()]"></v-text-field>
             <v-text-field type="date" v-model="user.DOB" label="Date Of Birth" ></v-text-field>
-            <v-file-input v-model="user.Profile_pic"></v-file-input>
+            <v-file-input v-model="user.file"></v-file-input>
 
             <div>
                 <v-btn @click="addUser" :disabled="!valid" class="btn btn-success mr-4">Register</v-btn>
@@ -32,16 +32,23 @@ export default {
         return {
             ...validations,
             valid:false,
-            user: {UID: 0,}
+            ProfPicture : null,
+            user: {
+                UID: 0,
+            }
         }
         
     },
     methods: {
-        addUser() {
+       async addUser() {
             console.log(this.user)
-            this.$store.dispatch('addUser', this.user);
+            try{ this.$store.dispatch('addUser', this.user);
             this.$router.push({path: '/login'})
+            }catch(e){
+                alert('Something went wrong')
+            }
         }
+
     }
 }
 </script>

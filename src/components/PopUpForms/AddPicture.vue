@@ -8,15 +8,15 @@
             <v-card-title>
                 <v-container>
                     <v-form>
-                        <v-file-input ></v-file-input>
-                        <v-text-field label="Add Description" :rules="[required('Password'),maxlength('Description',50)]"></v-text-field>
+                        <v-file-input v-model="photo.file" :rules="[required('Photo')]"></v-file-input>
+                        <v-text-field v-model="photo.desc" label="Add Description" :rules="[required('Password'),maxlength('Description',50)]"></v-text-field>
                     </v-form>   
                 </v-container>
                 
             </v-card-title>
             <v-card-actions>
                 <v-btn class="error" @click="dialog = false"> Cancel </v-btn>
-                <v-btn class="success"> Add </v-btn>
+                <v-btn class="success" @click="addPic"> Add </v-btn>
             </v-card-actions>
         </v-card>
     </v-dialog>
@@ -24,12 +24,33 @@
 
 <script>
 import validations from '@/utils/validations'
+import {mapState} from 'vuex'
+
 export default {
     name: 'AddPicForm',
+    computed: {
+        ...mapState(['currentUser'])
+    },
     data(){
         return {
             ...validations,
-            dialog: false
+            dialog: false,
+            photo: {
+                UID: '',
+                desc: '',
+                file: ''
+            }
+        }
+    },
+    methods: {
+      async  addPic(){
+            try {
+                this.photo.UID = this.currentUser.UID
+                await this.$store.dispatch('addPicture', this.photo)
+            } catch(e) {
+                alert (e)
+            }
+            
         }
     } 
 }

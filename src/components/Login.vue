@@ -43,6 +43,7 @@ export default {
         async loginUser(){
             let user = await this.$store.dispatch('loginUser',this.loginInfo)
             if( (typeof user) === 'undefined') {
+                this.$store.dispatch('getUsers'); 
                 this.$router.push('/profile')
             }else{
                 alert('Invalid username or password')

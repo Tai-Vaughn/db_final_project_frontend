@@ -31,6 +31,15 @@ export default new Vuex.Store({
             let newUser = state.users.concat(user);
             state.users = newUser;
         },
+
+        ADD_FRIEND (state, user){
+            console.log( state , user)
+        },
+
+        ADD_PIC (state,pic) {
+            let newGallery = state.gallary.concat(pic)
+            state.gallary = newGallery
+        },
         LOGOUT_USER(state){
           state.currentUser = {}  ;
           window.localStorage.currentUser = JSON.stringify({})
@@ -41,10 +50,7 @@ export default new Vuex.Store({
             window.localStorage.currentUser = JSON.stringify(user);
             window.localStorage.isAuthenticated = true;
         },
-        ADD_FRIEND (state, user){
-            console.log( state , user)
-    
-        }
+        
 
     },
     actions: {
@@ -56,7 +62,12 @@ export default new Vuex.Store({
             commit('SET_CURRENT_USER', user)
         },
         async addUser( {commit}, user) {
-            let response = await Api().post('/users', user).then(console.log(user));
+
+            let fd = new FormData();
+            for (var key in user){
+                fd.append(key,user[key])
+            }
+            let response = await Api().post('/users', fd).then(console.log(fd));
             let newUser = response.data.data.attributes;
             commit('ADD_USER',newUser)
         },
@@ -67,8 +78,18 @@ export default new Vuex.Store({
         },
 
         async getPics({commit},UID){
-            let response = await Api().get('/users/'+UID+'/pics')
+            let response = await Api().get('/photo/'+UID+'/pics')
             commit('SET_GALLARY',response.data)
+        },
+
+
+        async addPicture({commit} , pic){
+            let fd = new FormData()
+            for (var key in pic){
+                fd.append(key, pic[key])
+            }
+            let response = Api().post('photo/pics',fd)
+            commit('ADD_PIC',response.data)
         },
 
         logoutUser({commit}) {

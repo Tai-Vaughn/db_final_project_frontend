@@ -1,5 +1,11 @@
 <template>
-    <v-container>
-        yuiy
-    </v-container>
+    <div>
+        
+    </div>
 </template>
+
+<script>
+export default {
+    name : 'CreateGroup'
+}
+</script>

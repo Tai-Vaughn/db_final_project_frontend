@@ -7,9 +7,9 @@
         </v-toolbar-title>
       <v-spacer></v-spacer>
       <div v-if="currentUser.Fname">
-        {{currentUser.Uname}}
         <v-btn text class="mr-2" @click="logoutUser">
           Logout
+          <v-icon>mdi-exit-run</v-icon>
         </v-btn>
       </div>
       </v-app-bar>
@@ -22,8 +22,8 @@
             </v-list-item-avatar>
 
             <v-list-item-content>
-              <v-list-item-title>Application</v-list-item-title>
-              <v-list-item-subtitle>Subtext</v-list-item-subtitle>
+              <v-list-item-title>{{ currentUser.Fname}} {{currentUser.Lname}}</v-list-item-title>
+              <v-list-item-subtitle>{{ currentUser.Uname}}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
 
