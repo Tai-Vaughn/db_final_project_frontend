@@ -1,38 +1,24 @@
 <template>
     <v-container fluid>
         
-        <v-layout column>
+        <v-layout column id="scroll-target">
 
             <v-card-title class="card-header text-secondary">
-                @{{user.Uname}} 
+                <v-avatar size="96" class="mr-4">
+                    <img :src="user.ImgUrl"  alt="Avatar">
+                </v-avatar>@{{user.Uname}}
             </v-card-title>
-
-
             <v-card>
                 <v-card-text>
-
                     <v-flex class="mb-4">
-
-                        <v-avatar size="96" class="mr-4">
-                            <img :src="user.ImgUrl"  alt="Avatar">
-                        </v-avatar>
-
                     </v-flex>
-
                     <h5>Name: {{ user.Fname }} {{user.Lname}} </h5>
-
-                    <h5>DOB:  {{user.DOB}}</h5>
-
-                    <h5>Email: {{user.email }}</h5>
-
                 </v-card-text>
-
                 <v-card-actions>
                     <v-btn @click="addFriend">
                     <v-icon right fab color="cyan">mdi-pencil</v-icon>
                         add Friend
                     </v-btn>
-
                     <v-select
                         v-model="friend.type"
                         :items="friendTypes"

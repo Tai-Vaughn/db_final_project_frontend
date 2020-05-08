@@ -11,7 +11,6 @@ export default new Vuex.Store({
         gallary: [],
         isAuthenticated: false,
         currentUser: {},
-        sideBarView: {view: 'Users'}, 
         friendTypes: ['Relatives', 'School', 'Work']
     },
     mutations: {
@@ -24,9 +23,6 @@ export default new Vuex.Store({
         SET_GALLARY(state, gallary){
             state.gallary = gallary;
             window.localStorage.gallary = JSON.stringify(gallary);
-        },
-        SET_SIDE_BAR_VIEW(state,view){
-            state.sideBarView.view = view;
         },
         ADD_USER (state, user){
             let newUser = state.users.concat(user);
@@ -109,13 +105,6 @@ export default new Vuex.Store({
                 return {error: "Incorect username or password"}
             }
             
-        },
-        setsideBarView({commit},view){
-            try{
-                commit('SET_SIDE_BAR_VIEW',view)
-            }catch(e){
-                alert('Something Went Wrong')
-            }
         },
         async addFriend({commit},user){
             try{

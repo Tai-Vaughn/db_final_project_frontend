@@ -14,7 +14,7 @@
       </div>
       </v-app-bar>
 
-      <v-navigation-drawer v-model="drawer" absolute bottom temporary>
+      <v-navigation-drawer class="NavBar" v-model="drawer" absolute bottom temporary>
         <v-list >
           <v-list-item two-line :class="miniVariant && 'px-0'">
             <v-list-item-avatar size="100" color="indigo">
@@ -95,4 +95,8 @@ export default {
     .nav {
         background-color: aquamarine;
     }
+    .NavBar{
+      position: fixed;
+    }
+
 </style>
