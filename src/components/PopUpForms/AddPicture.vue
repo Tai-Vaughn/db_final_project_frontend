@@ -8,11 +8,10 @@
             <v-card-title>
                 <v-container>
                     <v-form>
-                        <v-file-input v-model="photo.file" :rules="[required('Photo')]"></v-file-input>
+                        <v-file-input v-model="photo.file" ></v-file-input>
                         <v-text-field v-model="photo.desc" label="Add Description" :rules="[required('Password'),maxlength('Description',50)]"></v-text-field>
                     </v-form>   
                 </v-container>
-                
             </v-card-title>
             <v-card-actions>
                 <v-btn class="error" @click="dialog = false"> Cancel </v-btn>
@@ -47,6 +46,7 @@ export default {
             try {
                 this.photo.UID = this.currentUser.UID
                 await this.$store.dispatch('addPicture', this.photo)
+                this.dialog = false
             } catch(e) {
                 alert (e)
             }

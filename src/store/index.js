@@ -23,6 +23,7 @@ export default new Vuex.Store({
         },
         SET_GALLARY(state, gallary){
             state.gallary = gallary;
+            window.localStorage.gallary = JSON.stringify(gallary);
         },
         SET_SIDE_BAR_VIEW(state,view){
             state.sideBarView.view = view;
@@ -43,6 +44,7 @@ export default new Vuex.Store({
         LOGOUT_USER(state){
           state.currentUser = {}  ;
           window.localStorage.currentUser = JSON.stringify({})
+          window.localStorage.gallary = JSON.stringify([]);
           window.localStorage.isAuthenticated = false;
         },
         SET_CURRENT_USER(state, user){
@@ -59,7 +61,10 @@ export default new Vuex.Store({
             commit('SET_USERS',response.data);
 
             let user = JSON.parse(window.localStorage.currentUser);
-            commit('SET_CURRENT_USER', user)
+            commit('SET_CURRENT_USER', user);
+
+            let gallery = JSON.parse(window.localStorage.gallary);
+            commit('SET_GALLARY',gallery)
         },
         async addUser( {commit}, user) {
 
@@ -117,6 +122,14 @@ export default new Vuex.Store({
                 console.log('ok',user)
                 await Api().post('/users/addfriend',user);
                 commit('ADD_FRIEND',)
+            }catch(e){
+                return {error: "Something went wrong"}
+            }
+        },
+        async changeDP ({commit},user) {
+            try {
+                await Api().post('/users/change',user)
+                commit('SET_CURRENT_USER',user)
             }catch(e){
                 return {error: "Something went wrong"}
             }

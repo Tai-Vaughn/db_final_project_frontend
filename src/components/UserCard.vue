@@ -73,7 +73,14 @@ export default {
             }catch(e){
                 alert(e)
             }
-        }
+        },
+        convertdate(date) {
+
+        let newdate = new String
+        newdate = date
+        return newdate.split('T',1)[0] 
+
+      }
     }
 }
 </script>
