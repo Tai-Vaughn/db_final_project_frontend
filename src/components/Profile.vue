@@ -1,6 +1,8 @@
 <template>
     <v-container>
         <v-row>
+            <v-col></v-col>
+            <!-- <AddPost></AddPost> -->
             <v-col class="mod">
                 <h3>Posts</h3> 
                 <v-container
@@ -8,7 +10,7 @@
                 style="max-height: 800px"
                 class="overflow-y-auto"
                 >
-        
+                <PostDash></PostDash>
                     <v-row
                     v-scroll:#scroll-target="onScroll"
                     align="center"
@@ -35,19 +37,22 @@
                     >
                     </v-row>
                 </v-container>
-            </v-col>   
+            </v-col>
         </v-row>
-        
     </v-container>
 </template>
 
 <script>
+import PostDash from './PostDash'
 import UserDash from './UserDash'
+// import AddPost from './PopUpForms/AddPost'
 // import {mapState} from 'vuex'
     export default {
         pageTitle: 'MyProfile',
         components: {
-            UserDash
+            UserDash,
+            PostDash,
+            // AddPost
          },
         computed: {
         
@@ -67,6 +72,7 @@ import UserDash from './UserDash'
     .mod{
         border-style: groove;
         border-width: 3px;
+        width: 600px;
 
     }
     h3{ text-align: center;}

@@ -25,8 +25,9 @@
               <v-list-item-title>{{ currentUser.Fname}} {{currentUser.Lname}}</v-list-item-title>
               <v-list-item-subtitle>{{ currentUser.Uname}}</v-list-item-subtitle>
             </v-list-item-content>
+            
           </v-list-item>
-
+            <AddPost></AddPost>
           <v-divider></v-divider>
 
           <v-list-item link router :to="link.route" v-for="link in links" :key="link.text">
@@ -44,9 +45,13 @@
 </template>
 
 <script>
+import AddPost from './PopUpForms/AddPost'
 import {mapState} from 'vuex'
 export default {
     name : 'Nav',
+    components: {
+      AddPost
+    },
     data() {
         return{
         drawer:false,
@@ -72,7 +77,11 @@ export default {
     },
     async loadPic(){
       await this.$store.dispatch('getPics',this.currentUser.UID)
-    }
+    },
+    async loadPosts(){
+      await this.$store.dispatch('getPosts',this.currentUser.UID)
+      
+    },
     },
     mounted(){
     },
@@ -85,6 +94,8 @@ export default {
             case "Friend":
                 this.loadFriends();
                 break;
+            case "Profile":
+                this.loadPosts();
                 }
             }
         },
