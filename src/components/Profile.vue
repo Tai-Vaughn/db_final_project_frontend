@@ -1,10 +1,9 @@
 <template>
     <v-container>
         <v-row>
-            <v-col></v-col>
-            <!-- <AddPost></AddPost> -->
             <v-col class="mod">
                 <h3>Posts</h3> 
+                <AddPost></AddPost>
                 <v-container
                 id="scroll-target"
                 style="max-height: 800px"
@@ -45,14 +44,14 @@
 <script>
 import PostDash from './PostDash'
 import UserDash from './UserDash'
-// import AddPost from './PopUpForms/AddPost'
+import AddPost from './PopUpForms/AddPost'
 // import {mapState} from 'vuex'
     export default {
         pageTitle: 'MyProfile',
         components: {
             UserDash,
             PostDash,
-            // AddPost
+            AddPost
          },
         computed: {
         

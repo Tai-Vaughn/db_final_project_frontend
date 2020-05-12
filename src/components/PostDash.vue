@@ -1,6 +1,6 @@
 <template>
     <div >
-        <v-container v-for="post in posts" :key="post.id">
+        <v-container v-for="post in posts.slice().reverse()" :key="post.id">
             <PostCard :post="post"></PostCard>
         </v-container>
     </div>
@@ -27,7 +27,7 @@ export default {
         getPosts (){
             this.user.UID = this.currentUser.UID
             console.log(this.user)
-        }
+        },
     }
 
 }

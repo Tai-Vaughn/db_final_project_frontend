@@ -42,6 +42,10 @@ export default new Vuex.Store({
             let newGallery = state.gallary.concat(pic)
             state.gallary = newGallery
         },
+        ADD_POST (state,post){
+            let newPosts = state.posts.concat(post)
+            state.posts = newPosts
+        },
         LOGOUT_USER(state){
           state.currentUser = {}  ;
           window.localStorage.currentUser = JSON.stringify({})
@@ -100,8 +104,16 @@ export default new Vuex.Store({
             for (var key in pic){
                 fd.append(key, pic[key])
             }
-            let response = Api().post('photo/pics',fd)
+            let response =await Api().post('photo/pics',fd)
             commit('ADD_PIC',response.data)
+        },
+        async addPost({commit},post){
+            let fd = new FormData()
+            for (var key in post){
+                fd.append(key, post[key])
+            }
+            await Api().post('posts',fd)
+            commit('ADD_POST',post)
         },
 
         logoutUser({commit}) {
