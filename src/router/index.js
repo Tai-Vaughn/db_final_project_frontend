@@ -5,6 +5,8 @@ import Friends from "../components/FriendList"
 import Gallery from "../components/Gallery"
 import Group from "../components/Group"
 import store from "../store/index"
+import Admin from "../components/Admin"
+import AdminUser from "../components/AdminUser"
 
 const ifNotAuthenticated = (to, from, next) => {
     if (store.state.currentUser == false) {
@@ -26,7 +28,11 @@ const routes = [
     {path:'/profile', name: "Profile", component: Profile, beforeEnter: ifAuthenticated},
     {path:'/friends', name: "Friend", component: Friends, beforeEnter: ifAuthenticated},
     {path:'/groups' , name: 'Group' , component: Group, beforeEnter: ifAuthenticated},
-    {path:'/gallery', name: "Galllery", component:Gallery, beforeEnter: ifAuthenticated}
+    {path:'/gallery', name: "Galllery", component:Gallery, beforeEnter: ifAuthenticated},
+    {path: '/admin', namde: "Admin" , component:Admin,
+    children: [{
+      path: ':id', name: "AdminUser", component:AdminUser
+    }] }  
 ];
 
 

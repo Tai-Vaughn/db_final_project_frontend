@@ -32,10 +32,10 @@ export default {
         return{
             ...validations,
             valid:false,
-            showPassword:true,
+            showPassword:false,
             loginInfo : {
-                Uname : 'Isamutai',
-                password: 'pass123'
+                Uname : '',
+                password: ''
             }
         }
     },
